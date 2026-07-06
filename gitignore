@@ -1,0 +1,16 @@
+/vendor/
+/node_modules/
+.env
+.env.*
+!.env.example
+/storage/*.key
+/storage/framework/*
+/storage/logs/*
+/public/storage
+.idea/
+.vscode/
+.docker/
+docker-compose.override.yml
+.DS_Store
+Homestead.json
+Homestead.yaml
