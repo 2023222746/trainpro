@@ -45,10 +45,3 @@ The system supports four user roles:
 - Git
 
 ---
-
-## Installation (Development)
-
-1. **Clone the repository**  
-   ```bash
-   git clone https://github.com/your-username/trainpro-lms.git
-   cd trainpro-lms
