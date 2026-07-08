@@ -1,30 +1,74 @@
-// Override Bootstrap variables
-$primary: #0a2e4a;      // Deep navy (TrainPro)
-$secondary: #f5a623;    // Gold/amber for CTAs
-$success: #28a745;
-$font-family-base: 'Inter', sans-serif;
+// ============================================
+// 1. Custom Bootstrap Variables Overrides
+// ============================================
 
-// Import Bootstrap
+// Brand Colours (from TrainPro business profile)
+$primary: #0a2e4a;        // Deep navy blue
+$secondary: #f5a623;      // Gold/amber for CTAs
+$success: #28a745;
+$info: #17a2b8;
+$warning: #ffc107;
+$danger: #dc3545;
+
+// Typography
+$font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$headings-font-weight: 700;
+
+// Navbar
+$navbar-light-brand-color: $primary;
+$navbar-light-brand-hover-color: darken($primary, 10%);
+
+// Buttons
+$btn-border-radius: 0.5rem;
+$btn-font-weight: 600;
+
+// Cards
+$card-border-radius: 0.75rem;
+$card-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+
+// Inputs
+$input-border-radius: 0.5rem;
+$input-focus-border-color: $primary;
+$input-focus-box-shadow: 0 0 0 0.2rem rgba($primary, 0.25);
+
+// Badges
+$badge-font-weight: 500;
+$badge-padding-y: 0.4em;
+$badge-padding-x: 0.8em;
+
+// ============================================
+// 2. Import Bootstrap (and its dependencies)
+// ============================================
 @import '~bootstrap/scss/bootstrap';
 
-// Custom styles
+// ============================================
+// 3. Custom Global Styles
+// ============================================
+
 body {
+    font-family: $font-family-base;
     background-color: #f8f9fa;
-    font-family: 'Inter', sans-serif;
 }
 
+// ============================================
+// 4. Navigation
+// ============================================
 .navbar-brand {
-    font-weight: 700;
-    color: $primary !important;
     img {
         height: 40px;
+        width: auto;
     }
+    font-weight: 700;
 }
 
+// ============================================
+// 5. Hero Section
+// ============================================
 .hero {
-    background: linear-gradient(135deg, $primary 0%, #1a4b6d 100%);
+    background: linear-gradient(135deg, $primary 0%, lighten($primary, 15%) 100%);
     color: #fff;
     padding: 80px 0;
+
     .btn-primary {
         background-color: $secondary;
         border-color: $secondary;
@@ -32,43 +76,162 @@ body {
         &:hover {
             background-color: darken($secondary, 10%);
             border-color: darken($secondary, 10%);
+            color: $primary;
         }
     }
 }
 
-.card-course {
-    border-radius: 12px;
+// ============================================
+// 6. Course Cards
+// ============================================
+.course-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: none;
+    box-shadow: $card-shadow;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
+
     &:hover {
         transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     }
-    .card-body {
-        padding: 1.5rem;
+
+    .card-img-top {
+        height: 200px;
+        object-fit: cover;
     }
+
     .course-category {
-        font-size: 0.8rem;
+        display: inline-block;
+        font-size: 0.75rem;
         background: $secondary;
         color: $primary;
         padding: 0.2rem 0.8rem;
         border-radius: 20px;
-        display: inline-block;
+        font-weight: 600;
         margin-bottom: 0.5rem;
     }
 }
 
-.dashboard-sidebar {
-    background: $primary;
+// ============================================
+// 7. Sidebar (for dashboards)
+// ============================================
+.sidebar {
     min-height: 100vh;
-    padding: 20px 0;
+    background: $primary;
+
     .nav-link {
-        color: rgba(255,255,255,0.8);
-        &:hover, &.active {
+        color: rgba(255, 255, 255, 0.8);
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+        margin-bottom: 0.25rem;
+        transition: background 0.15s;
+
+        &:hover {
             color: #fff;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        &.active {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.15);
+            font-weight: 600;
+        }
+
+        i {
+            margin-right: 0.75rem;
         }
     }
 }
 
-// ... more custom styles
+// ============================================
+// 8. Statistics Boxes (Home page)
+// ============================================
+.stat-box {
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: $card-border-radius;
+    box-shadow: $card-shadow;
+    transition: transform 0.2s;
+    &:hover {
+        transform: scale(1.02);
+    }
+    .display-4 {
+        font-weight: 700;
+        color: $primary;
+    }
+}
+
+// ============================================
+// 9. Payment Options
+// ============================================
+.payment-option {
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 2px solid #dee2e6;
+
+    &:hover {
+        border-color: $primary;
+        background: #f8f9fa;
+    }
+
+    &.selected {
+        border-color: $success;
+        background: rgba($success, 0.05);
+    }
+
+    .card-body i {
+        font-size: 2.5rem;
+        color: $primary;
+    }
+}
+
+// ============================================
+// 10. Toast notifications
+// ============================================
+#toast-container {
+    z-index: 1050;
+}
+
+// ============================================
+// 11. Responsive tweaks
+// ============================================
+@media (max-width: 768px) {
+    .hero {
+        padding: 40px 0;
+        h1 {
+            font-size: 2rem;
+        }
+    }
+    .sidebar {
+        min-height: auto;
+    }
+    .course-card .card-img-top {
+        height: 150px;
+    }
+}
+
+// ============================================
+// 12. Utilities
+// ============================================
+.text-primary {
+    color: $primary !important;
+}
+.bg-primary {
+    background-color: $primary !important;
+}
+.btn-primary {
+    background-color: $primary;
+    border-color: $primary;
+    &:hover, &:focus {
+        background-color: darken($primary, 10%);
+        border-color: darken($primary, 10%);
+    }
+}
+.btn-outline-primary {
+    color: $primary;
+    border-color: $primary;
+    &:hover {
+        background-color: $primary;
+        color: #fff;
+    }
+}
