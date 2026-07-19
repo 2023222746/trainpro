@@ -5,7 +5,7 @@ services:
     image: nginx:alpine
     container_name: trainpro-nginx
     ports:
-      - "80:80"
+      - "8081:80"   # changed from 8080:80
       - "443:443"
     volumes:
       - ./:/var/www/html
@@ -13,6 +13,7 @@ services:
     depends_on:
       - php
       - mysql
+
 
   php:
     build:
