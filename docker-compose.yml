@@ -5,7 +5,7 @@ services:
     image: nginx:alpine
     container_name: trainpro-nginx
     ports:
-      - "8081:80"   # changed from 8080:80
+      - "8081:80"   # use 8081 for your site
       - "443:443"
     volumes:
       - ./:/var/www/html
@@ -13,7 +13,6 @@ services:
     depends_on:
       - php
       - mysql
-
 
   php:
     build:
@@ -38,9 +37,10 @@ services:
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: trainpro
     ports:
-      - "3306:3306"
+      - "3307:3306"   # use 3307 externally, 3306 inside container
     volumes:
       - mysql_data:/var/lib/mysql
 
 volumes:
   mysql_data:
+
