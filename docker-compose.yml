@@ -5,7 +5,7 @@ services:
     image: nginx:alpine
     container_name: trainpro-nginx
     ports:
-      - "8081:80"   # use 8081 for your site
+      - "80:80"     # serve directly on localhost
       - "443:443"
     volumes:
       - ./:/var/www/html
@@ -37,10 +37,9 @@ services:
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: trainpro
     ports:
-      - "3307:3306"   # use 3307 externally, 3306 inside container
+      - "3306:3306"   # only works if XAMPP/Oracle MySQL is stopped
     volumes:
       - mysql_data:/var/lib/mysql
 
 volumes:
   mysql_data:
-
